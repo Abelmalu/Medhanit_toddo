@@ -1,19 +1,14 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 const CreateTask = () => {
 
      // let name = 'mario'
-    const [title,setTitle] = useState('mario')
-    const [description,setDescription] = useState('do launary')
-    const create = ()=>{
-
-
-
-
-
-
-    }
+    const [title,setTitle] = useState('')
+    const [description,setDescription] = useState('')
+    const navigate = useNavigate()
+    
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -33,7 +28,9 @@ const CreateTask = () => {
             })
             .then(data => {
                 console.log('New task added:', data);
+
                 // Reset form or display a success message, etc.
+                navigate('/')
             })
             .catch(error => {
                 console.error(error);
