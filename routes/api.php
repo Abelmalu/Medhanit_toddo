@@ -12,7 +12,8 @@ Route::get('/todo', [TaskController::class, 'index']);
 // Route::get('/todo/{id}', [TaskController::class, 'show']);
 Route::post('/create/todo', [TaskController::class, 'store']);
 Route::put('/update/todo/{id}', [TaskController::class, 'update']);
-Route::get('/search/todo/{title}', [TaskController::class, 'search']);
+Route::get('/search/todo/{status}', [TaskController::class, 'search']);
 Route::delete('/delete/todo/{id}',[TaskController::class, 'destroy']);
+Route::get('/changeStatus/{id}',[TaskController::class, 'changeStatus']);
 
 

@@ -50,17 +50,48 @@ const ListTask = () => {
 
 
     }
+    const changeStatus = (id)=>{
+
+        fetch(`http://127.0.0.1:8000/api/changeStatus/${id}`,{
+            method:'GET'
+        })
+
+    }
 
 
     return (
        <div className="list">
       <h1>Your tasks</h1>
+        <h3>Filter tasks</h3>
+        <select name="" id="" onChange={(e)=>{
+
+            console.log(e.target.value)
+            const id = e.target.value;
+
+             fetch(`http://127.0.0.1:8000/api/search/todo/${id}`,{
+            method:'GET'
+        }).then((res)=>{
+           return res.json();
+        }).then((data)=>{
+            console.log(data)
+            setTask(data)
+        })
+
+        }}>
+            <option value={0}>pending</option>
+            <option value={1}>completed</option>
+        </select>
+
       {error && <div>{error}</div>}
       {isLoading && <p> Loading....</p>}
+
       {tasks && (
         tasks.map((task) => (
-          <div key={task.id}> {}
-            <h3>{task.title}</h3>
+          <div key={task.id}>
+
+            <h2>{task.title}</h2>
+            <p>{task.description}</p>
+
             {task.status === 1 ? (
               <h5>completed</h5>
             ) : (
@@ -68,6 +99,12 @@ const ListTask = () => {
             )}
             <Link to={`/edit/${task.id}`}>edit</Link>
             <button onClick={()=>handleClick(task.id)}>Delete</button>
+
+            {!task.status &&<button onClick={()=>changeStatus(task.id)}>complete</button>}
+
+
+
+
             <br></br>
 
             {/* <Lin to=""k>edit</Lin> */}

@@ -55,9 +55,9 @@ class TaskController extends Controller
     }
 
 
-    public function search($title) {
+    public function search($status) {
 
-        return Task::where('title',$title)->get();
+        return Task::where('status',$status)->get();
     }
     public function update(Request $request,  $id){
 
@@ -78,6 +78,30 @@ class TaskController extends Controller
 
             return ['error'=>'something went wrong '];
         }
+
+
+
+
+    }
+
+
+    public function changeStatus(Request $request,$id){
+
+        $task = Task::find($id);
+        $task->status = 1;
+
+        $result = $task->save();
+        if($result){
+
+             return ['success','successully changed the status'];
+
+
+        }
+        else{
+
+            return['error','something went wrong'];
+        }
+
 
 
 

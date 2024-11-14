@@ -6,14 +6,7 @@ const EditTask = () => {
     const {id} = useParams()
     const [title,setTitle] = useState('')
     const [description,setDescription] = useState('')
-    const create = ()=>{
-
-
-
-
-
-
-    }
+    
 
     const handleSubmit = (e)=>{
         e.preventDefault();
