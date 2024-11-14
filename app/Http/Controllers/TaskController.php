@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 use App\Models\Task;
 
 
@@ -27,25 +27,36 @@ class TaskController extends Controller
    public function store(Request $request)
     {
 
-        // $validated = $request->validate([
-        //     'title'=>'required|string',
-        //     'description'=>
-        // ]);
+        $validated = $request->validate([
 
-        $task = new Task();
-        $task->title=$request->get('title');
-        $task->description = $request->get('description');
+        ]);
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'description' => 'nullable|string'
+        ]);
 
-        $result = $task->save();
-        if($result){
-            return ['success' => "task successfully saved"];
+        if($validator->fails()){
 
+            return $validator->errors();
         }
 
         else{
 
-            return ['error'=>"not saved to the db"];
+            $task = new Task();
+            $task->title = $request->get('title');
+            $task->description = $request->get('description');
+
+            $result = $task->save();
+            if ($result) {
+                return ['success' => "task successfully saved"];
+            } else {
+
+                return ['error' => "not saved to the db"];
+            }
+
+
         }
+
 
 
 
@@ -93,7 +104,7 @@ class TaskController extends Controller
         $result = $task->save();
         if($result){
 
-             return ['success','successully changed the status'];
+             return Task::all();
 
 
         }
@@ -114,7 +125,7 @@ class TaskController extends Controller
 
         if($result){
 
-            return ['success','result has been deleted'];
+            return Task::all();
         }
         else{
 

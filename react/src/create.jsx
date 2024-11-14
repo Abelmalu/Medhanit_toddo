@@ -8,7 +8,7 @@ const CreateTask = () => {
     const [title,setTitle] = useState('')
     const [description,setDescription] = useState('')
     const navigate = useNavigate()
-    
+
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -24,17 +24,17 @@ const CreateTask = () => {
                 if (!response.ok) {
                     throw new Error('Failed to create task');
                 }
-                return response.json(); // Parse the JSON response if successful
+                return response.json(); 
             })
             .then(data => {
                 console.log('New task added:', data);
 
-                // Reset form or display a success message, etc.
+
                 navigate('/')
             })
             .catch(error => {
                 console.error(error);
-                setError(error.message); // Set error message if the request fails
+                setError(error.message);
             });
 
     }
@@ -47,7 +47,7 @@ const CreateTask = () => {
 
     <form onSubmit={handleSubmit}>
 
-        <input type="text" value={title} onChange={(e)=> setTitle(e.target.value)} />
+        <input type="text" value={title} onChange={(e)=> setTitle(e.target.value)} required/>
         <textarea name="" id="" value={description} onChange={(e)=>setDescription(e.target.value)}></textarea> <br />
         <button>Submit</button>
     </form>

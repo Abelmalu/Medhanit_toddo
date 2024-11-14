@@ -43,8 +43,12 @@ const ListTask = () => {
 
             method:'DELETE'
 
-        }).then(()=>{
-            navigate('/add')
+        }).then((res)=>{
+            return res.json();
+
+        }).then((data)=>{
+            console.log(data)
+            setTask(data)
         })
 
 
@@ -54,7 +58,14 @@ const ListTask = () => {
 
         fetch(`http://127.0.0.1:8000/api/changeStatus/${id}`,{
             method:'GET'
+        }).then((res)=>{
+            return res.json();
+
+        }).then((data)=>{
+            console.log(data)
+            setTask(data)
         })
+
 
     }
 
@@ -78,6 +89,7 @@ const ListTask = () => {
         })
 
         }}>
+            <option value="">filter</option>
             <option value={0}>pending</option>
             <option value={1}>completed</option>
         </select>
