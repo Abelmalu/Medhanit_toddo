@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const ListTask = () => {
     const [tasks, setTask]=useState(null)
@@ -32,6 +33,11 @@ const ListTask = () => {
             ) : (
               <h5>pending</h5>
             )}
+            <Link to={`/edit/${task.id}`}>edit</Link>
+            <Link to="/add">Delete</Link>
+            <br></br>
+
+            {/* <Lin to=""k>edit</Lin> */}
           </div>
         ))
       ) : (
