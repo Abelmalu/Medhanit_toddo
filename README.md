@@ -1,8 +1,8 @@
-#Todo Application
+# Todo Application
 
 
 
-#This is a simple todo application where users can use to manage their todos.
+## This is a simple todo application where users can use to manage their todos.
 
 # Feature Overview
   -Create, Read, Update and Delete Todos.
@@ -84,6 +84,12 @@ http://127.0.0.1:3000
 
 
 # Sample photos
+
+![Screenshot 2024-11-15 090430](https://github.com/user-attachments/assets/9d22675c-7f2f-4a4f-bd2b-6b712e039ad3)
+![Screenshot 2024-11-15 090458](https://github.com/user-attachments/assets/82fa1aaf-3dfb-4192-ad05-f609ed481dda)
+![Screenshot 2024-11-15 090510](https://github.com/user-attachments/assets/f80f8c57-8c5f-4aa5-9748-e17364c998bd)
+![Screenshot 2024-11-15 090521](https://github.com/user-attachments/assets/7e2a0396-5316-499f-9c4f-e210ac53c1ee)
+![Screenshot 2024-11-15 090538](https://github.com/user-attachments/assets/b2955cb8-88f7-469a-a95a-efd938cb64fb)
 
 
 
