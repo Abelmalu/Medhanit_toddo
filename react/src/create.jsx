@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateTask = () => {
 
-    
+
     const [title,setTitle] = useState('')
     const [description,setDescription] = useState('')
     const navigate = useNavigate()
@@ -56,7 +56,7 @@ const CreateTask = () => {
         required
         className="w-full px-4 py-3 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 bg-gray-700 text-white placeholder-gray-400"
         placeholder="Enter task title"
-         pattern="[a-zA-Z]+"
+        pattern="[a-zA-Z\s]+" 
       />
     </div>
     <div className="mb-6">
@@ -70,7 +70,8 @@ const CreateTask = () => {
 
         className="w-full h-32 px-4 py-3 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 bg-gray-700 text-white placeholder-gray-400"
         placeholder="Enter task description"
-         pattern="[a-zA-Z]+"
+
+         pattern="[a-zA-Z\s]+"
       ></textarea>
     </div>
     <div className="flex justify-center">

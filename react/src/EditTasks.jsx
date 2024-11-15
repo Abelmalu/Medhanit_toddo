@@ -57,7 +57,7 @@ const EditTask = () => {
         class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         placeholder="Enter task title"
         required
-         pattern="[a-zA-Z]+"
+         pattern="[a-zA-Z\s]+"
       />
     </div>
 
@@ -69,7 +69,7 @@ const EditTask = () => {
         onChange={(e) => setDescription(e.target.value)}
         class="border border-gray-300 rounded-md px-4 py-3 w-full h-32 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         placeholder="Enter task description"
-         pattern="[a-zA-Z]+"
+        pattern="[a-zA-Z\s]+" 
 
       ></textarea>
     </div>
