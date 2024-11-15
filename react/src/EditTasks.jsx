@@ -42,20 +42,48 @@ const EditTask = () => {
 
 
     return (
-        <div>
-            <h2>Update the Task</h2>
+        <div class="bg-white shadow-lg rounded-lg p-8 max-w-xl mx-auto mt-10">
+  <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">Update the Task</h2>
 
+  <form onSubmit={handleSubmit} class="space-y-6">
 
-    <form onSubmit={handleSubmit}>
+    <div class="flex flex-col space-y-2">
+      <label htmlFor="title" class="text-gray-700 font-semibold">Task Title</label>
+      <input
+        type="text"
+        id="title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        class="border border-gray-300 rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+        placeholder="Enter task title"
+        required
+         pattern="[a-zA-Z]+"
+      />
+    </div>
 
-        <input type="text" value={title} onChange={(e)=> setTitle(e.target.value)} />
-        <textarea name="" id="" value={description} onChange={(e)=>setDescription(e.target.value)}></textarea> <br />
-        <button>Update</button>
-    </form>
+    <div class="flex flex-col space-y-2">
+      <label htmlFor="description" class="text-gray-700 font-semibold">Task Description</label>
+      <textarea
+        id="description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        class="border border-gray-300 rounded-md px-4 py-3 w-full h-32 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+        placeholder="Enter task description"
+         pattern="[a-zA-Z]+"
 
+      ></textarea>
+    </div>
 
-
-        </div>
+    <div class="flex justify-center mt-6">
+      <button
+        type="submit"
+        class="px-6 py-3 text-white bg-blue-500 hover:bg-blue-700 rounded-md font-semibold shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</div>
 
 
 

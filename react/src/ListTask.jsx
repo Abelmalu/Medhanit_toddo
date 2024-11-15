@@ -66,64 +66,89 @@ const ListTask = () => {
             setTask(data)
         })
 
-
     }
 
 
     return (
-       <div className="list">
-      <h1>Your tasks</h1>
-        <h3>Filter tasks</h3>
-        <select name="" id="" onChange={(e)=>{
+   <div class="list bg-gray-100 shadow-md rounded-lg px-6 py-8 max-w-4xl mx-auto">
+  <h1 class="text-3xl font-semibold mb-6 text-center text-gray-800">Your tasks</h1>
+  <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
+    <h3 class="text-xl font-semibold text-gray-700">Filter tasks</h3>
+    <select
+      name=""
+      id=""
+      onChange={(e) => {
+        console.log(e.target.value)
 
-            console.log(e.target.value)
-            const id = e.target.value;
+        const id = e.target.value;
 
-             fetch(`http://127.0.0.1:8000/api/search/todo/${id}`,{
-            method:'GET'
+        fetch(`http://127.0.0.1:8000/api/search/todo/${id}`,{
+          method:'GET'
         }).then((res)=>{
-           return res.json();
+          return res.json();
         }).then((data)=>{
-            console.log(data)
-            setTask(data)
+          console.log(data)
+          setTask(data)
         })
+      }}
+      class="border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-full sm:w-auto mb-4 sm:mb-0"
+    >
+      <option value="">Filter</option>
+      <option value={0}>Pending</option>
+      <option value={1}>Completed</option>
+    </select>
+  </div>
 
-        }}>
-            <option value="">filter</option>
-            <option value={0}>pending</option>
-            <option value={1}>completed</option>
-        </select>
+  {error && <div class="text-red-500 mb-4 text-center">{error}</div>}
+  {isLoading && <p class="text-gray-500 mb-4 text-center">Loading...</p>}
 
-      {error && <div>{error}</div>}
-      {isLoading && <p> Loading....</p>}
-
-      {tasks && (
-        tasks.map((task) => (
-          <div key={task.id}>
-
-            <h2>{task.title}</h2>
-            <p>{task.description}</p>
-
-            {task.status === 1 ? (
-              <h5>completed</h5>
-            ) : (
-              <h5>pending</h5>
-            )}
-            <Link to={`/edit/${task.id}`}>edit</Link>
-            <button onClick={()=>handleClick(task.id)}>Delete</button>
-
-            {!task.status &&<button onClick={()=>changeStatus(task.id)}>complete</button>}
-
-
-
-
-            <br></br>
-
-            {/* <Lin to=""k>edit</Lin> */}
+  {tasks && (
+    <ul class="space-y-6">
+      {tasks.map((task) => (
+        <li key={task.id} class="bg-white shadow-lg rounded-lg p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
+          <div class="flex flex-col sm:flex-row sm:space-x-6 items-start sm:items-center w-full">
+            <div class="flex flex-col sm:w-1/2 space-y-2">
+              <h2 class="text-xl font-bold text-gray-800">{task.title}</h2>
+              <p class="text-gray-600">{task.description}</p>
+              <div class="flex items-center text-sm mt-3 sm:mt-0">
+                {task.status === 1 ? (
+                  <h5 class="text-green-500 mr-2">Completed</h5>
+                ) : (
+                  <h5 class="text-orange-500 mr-2">Pending</h5>
+                )}
+              </div>
+            </div>
+            <div class="flex space-x-4 mt-4 sm:mt-0">
+              <Link to={`/edit/${task.id}`} class="text-blue-500 hover:underline">
+                Edit
+              </Link>
+            </div>
           </div>
-        ))
-      ) }
-    </div>
+          <div class="flex space-x-4 mt-4 sm:mt-0">
+             {!task.status && (
+              <button
+                onClick={() => changeStatus(task.id)}
+                class="px-4 py-2 text-white bg-green-500 hover:bg-green-700 rounded-md font-semibold shadow-md"
+              >
+                Complete
+              </button>
+            )}
+            <button
+              onClick={() => handleClick(task.id)}
+              class="px-4 py-2 text-white bg-red-500 hover:bg-red-700 rounded-md font-semibold shadow-md"
+            >
+              Delete
+            </button>
+
+          </div>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
+
+
       );
 }
 
